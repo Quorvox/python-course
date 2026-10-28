@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Python с нуля</title>
-<meta name="description" content="Курс по Python: уровни «Стажёр» и «Джун», объяснения для новичков, задания с автопроверкой. Код запускается прямо на странице.">
+<meta name="description" content="Бесплатный курс по Python: два уровня, практика, проекты, словарь и шпаргалки. Код запускается прямо в браузере, ставить ничего не нужно.">
 <meta property="og:title" content="Python с нуля">
-<meta property="og:description" content="Два уровня, десятки заданий с автопроверкой, светлая и тёмная тема. Код запускается прямо в браузере.">
+<meta property="og:description" content="Два уровня, практика, проекты, словарь. Код запускается прямо в браузере.">
 <meta property="og:type" content="website">
 <script>
   // тема ставится до отрисовки, чтобы не мигало
@@ -21,12 +21,13 @@
 <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-<div class="top"><b>Python с нуля</b><button id="menuBtn" aria-expanded="false" aria-controls="side"></button></div>
-<div class="shell">
-  <nav class="side" id="side" aria-label="Уроки"></nav>
+<header class="hdr" id="hdr"></header>
+<div class="shell" id="shell">
+  <nav class="side" id="side" aria-label="Меню"></nav>
   <main id="app"></main>
 </div>
 
+<script src="js/util.js"></script>
 <script src="js/helpers.js"></script>
 <!-- уровень «Стажёр» -->
 <script src="js/content/trainee-1.js"></script>
@@ -36,9 +37,23 @@
 <script src="js/content/junior-1.js"></script>
 <script src="js/content/junior-2.js"></script>
 <script src="js/content/junior-3.js"></script>
+<!-- тест уровня, разборы заданий, итоги уроков -->
 <script src="js/content/placement.js"></script>
+<script src="js/content/plans.js"></script>
+<script src="js/content/recaps.js"></script>
+<!-- практика, проекты, словарь, страницы -->
+<script src="js/content/practice.js"></script>
+<script src="js/content/projects.js"></script>
+<script src="js/content/glossary.js"></script>
+<script src="js/content/pages-start.js"></script>
+<script src="js/content/pages-vscode.js"></script>
+<script src="js/content/pages-books.js"></script>
+<script src="js/content/pages-cheats.js"></script>
 <script src="js/highlight.js"></script>
 <script src="js/engine.js"></script>
+<script src="js/editor.js"></script>
+<script src="js/render.js"></script>
+<script src="js/pages.js"></script>
 <script src="js/app.js"></script>
 </body>
 </html>
