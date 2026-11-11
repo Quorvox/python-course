@@ -15,8 +15,16 @@ import sys, json, io
 case = json.load(open(sys.argv[1], encoding="utf-8"))
 sys.stdin = io.StringIO(case.get("stdin") or "")
 ns = {"__name__": "__main__", "__src__": case["code"]}
+_real = sys.stdout
+_buf = io.StringIO()
 try:
-    exec(compile(case["code"], "<exec>", "exec"), ns)
+    sys.stdout = _buf
+    try:
+        exec(compile(case["code"], "<exec>", "exec"), ns)
+    finally:
+        sys.stdout = _real
+    sys.stdout.write(_buf.getvalue())
+    ns["__out__"] = _buf.getvalue()
     if case.get("test"):
         exec(compile(case["test"], "<test>", "exec"), ns)
 except BaseException as e:

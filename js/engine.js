@@ -23,6 +23,7 @@ const PyEngine = (() => {
       try { await py.runPythonAsync(code, { globals: ns }); }
       catch (err) { res.ok = false; res.error = String(err.message || err); }
       if (res.ok && test) {
+        ns.set('__out__', out);   // всё, что программа напечатала: для проверки print-заданий
         try { await py.runPythonAsync(test, { globals: ns }); res.passed = true; }
         catch (err) { res.passed = false; res.testError = String(err.message || err); }
       }

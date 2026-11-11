@@ -15,6 +15,7 @@ const bar = (done, total, cls = '') => `<div class="bar2 ${cls}"><i style="width
 const plural = (n, a, b, c) => { const m = n % 100, k = n % 10; return m > 10 && m < 20 ? c : k === 1 ? a : k > 1 && k < 5 ? b : c; };
 
 const Pages = {};
+const NEW_LESSONS = ['io', 'numbers', 'logic'];
 
 /* ---------- главная ---------- */
 Pages.home = () => {
@@ -23,8 +24,8 @@ Pages.home = () => {
   const totalAll = cnt('trainee') + cnt('junior') + COURSE.practice.length;
   const hero = el('div', 'hero');
   const left = el('div');
-  left.append(el('h1', null, 'Python с нуля до джуна'));
-  left.append(el('p', 'sub', 'Читаешь короткую теорию, запускаешь код прямо на странице и сразу проверяешь себя. Что-то непонятно — жми «Не понял» и получаешь объяснение проще и пример на других данных.'));
+  left.append(el('h1', null, 'Python <mark>с нуля</mark> до джуна'));
+  left.append(el('p', 'sub', 'Маленькие шаги, один новый приём за раз. Запускаешь код прямо на странице и сразу проверяешь себя. Что-то непонятно — жми «Не понял» и получаешь объяснение проще.'));
   const started = Store.days.length > 0;
   const nx = nextLesson(ST.level);
   left.append(el('div', 'ctas', `<a class="cta" href="#/${started ? nx.id : 'start'}">${started ? 'Продолжить: ' + esc(nx.title) : 'Начать'} ${ic('arrow')}</a><a class="cta alt" href="#/test">${ic('target')} Тест уровня</a>`));
@@ -65,7 +66,8 @@ Pages.home = () => {
   root.append(el('h2', 'sec-h', `Уроки уровня «${LEVELS[ST.level].name}»`));
   const ol = el('ol', 'toc');
   lessonsOf(ST.level).forEach((l, i) => {
-    const li = el('li'); const a = el('a', null, `<span class="n">${i + 1}</span><span><b>${esc(l.title)} ${isFin(l) ? '<span class="ck">✓</span>' : ''}</b><span class="d">${esc(l.blurb)}</span></span>`);
+    const nt = tasksOf(l).length;
+    const li = el('li', isFin(l) && nt ? 'done' : ''); const a = el('a', null, `<span class="n">${isFin(l) && nt ? '✓' : i + 1}</span><span><b>${esc(l.title)}${NEW_LESSONS.includes(l.id) ? '<span class="tag-new">новое</span>' : ''}</b><span class="d">${esc(l.blurb)}</span></span><span class="cnt">${nt ? doneIn(l) + '/' + nt : 'без заданий'}</span>`);
     a.href = '#/' + l.id; li.append(a); ol.append(li);
   });
   root.append(ol);
@@ -84,6 +86,11 @@ Pages.lesson = id => {
   const col = el('article', 'page');
   col.append(el('div', 'crumbs', `<span class="chip ${l.level}">${LEVELS[l.level].name}</span><span>Урок ${i + 1} из ${list.length}</span>`));
   col.append(el('h1', null, esc(l.title)), el('p', 'lead', esc(l.lead)));
+  if (tasksOf(l).length) {
+    const lp = el('div', 'lprog'); col.append(lp);
+    const updLp = () => { const d = doneIn(l), t = tasksOf(l).length; lp.innerHTML = `<div class="meter-bar"><i style="width:${Math.round(d / t * 100)}%"></i></div><span>${d} из ${t} заданий</span>`; };
+    App.onProgress.push(updLp); updLp();
+  }
   const heads = renderBlocks(col, l.blocks);
   const rc = COURSE.recaps[l.id];
   if (rc) col.append(el('div', 'recap', `<h3>Главное за минуту</h3><ul>${rc.map(x => `<li>${fmt(x)}</li>`).join('')}</ul>`));

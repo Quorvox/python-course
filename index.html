@@ -14,10 +14,10 @@
   if(t!=='light'&&t!=='dark')t=matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';
   document.documentElement.dataset.theme=t;})();
 </script>
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230E1A2B'/%3E%3Cpath d='M9 10l7 6-7 6' fill='none' stroke='%23FFD43B' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M18 23h6' stroke='%23FFD43B' stroke-width='3' stroke-linecap='round'/%3E%3C/svg%3E">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23C6F432'/%3E%3Cpath d='M9 10l7 6-7 6' fill='none' stroke='%2316161D' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M18 23h6' stroke='%2316161D' stroke-width='3' stroke-linecap='round'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Unbounded:wght@600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -41,6 +41,8 @@
 <script src="js/content/placement.js"></script>
 <script src="js/content/plans.js"></script>
 <script src="js/content/recaps.js"></script>
+<!-- лёгкий вход для стажёра: новые уроки и разминки -->
+<script src="js/content/trainee-easy.js"></script>
 <!-- практика, проекты, словарь, страницы -->
 <script src="js/content/practice.js"></script>
 <script src="js/content/projects.js"></script>
